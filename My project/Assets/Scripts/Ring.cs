@@ -5,9 +5,11 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int vitesse;
+
     void Start()
     {
-        
+        vitesse = 1;
     }
 
     // Update is called once per frame
@@ -15,11 +17,11 @@ public class Ring : MonoBehaviour
     {
         if(Input.GetKey("left"))
         {
-            transform.Rotate(0, 0, 0.5f);
+            transform.Rotate(0, 0, 0.2f * vitesse);
         }
         if (Input.GetKey("right"))
         {
-            transform.Rotate(0, 0, -0.5f);
+            transform.Rotate(0, 0, -0.2f * vitesse);
         }
     }
 }
