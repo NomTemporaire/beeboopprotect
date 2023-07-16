@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4462194403543733013}
   - component: {fileID: 4048917479012442923}
   - component: {fileID: 6587384149257357058}
+  - component: {fileID: 5067283353323983900}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -107,3 +108,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5067283353323983900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131360610471622374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cb550bdf4a34f429966be3088f4bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 200
+  nb: 1
+  range: 7
+  etape: 0
+  enemyPrefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
+  prefab: {fileID: 5449534232926743785, guid: 915475a045ae900458143fca28ca4895, type: 3}
