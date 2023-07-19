@@ -354,6 +354,7 @@
 -analyzer:"A:/Programs/2022.3.4f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/Controller.cs"
+"Assets/Scripts/Enemy.cs"
 "Assets/Scripts/Planet.cs"
 "Assets/Scripts/Ring.cs"
 "Assets/Scripts/Sun.cs"

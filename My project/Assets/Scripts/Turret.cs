@@ -9,7 +9,6 @@ public class Turret : MonoBehaviour
     public int nb;
     public int range;
     public int etape;
-    public GameObject enemyPrefab;
 
     public GameObject prefab;
     // Start is called before the first frame update
@@ -26,8 +25,7 @@ public class Turret : MonoBehaviour
         {
             GameObject target = null;
             float minDist = float.MaxValue;
-            var enemies = GameObject.Find("Controller").GetComponent<Controller>().enemies;
-            foreach (GameObject obj in enemies)
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 Vector3 dist = obj.transform.position - transform.position;
                 if(dist.magnitude<=range && dist.magnitude<minDist)

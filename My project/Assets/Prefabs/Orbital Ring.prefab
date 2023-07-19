@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1691925896989948006}
   m_Layer: 0
   m_Name: Orbital Ring
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
