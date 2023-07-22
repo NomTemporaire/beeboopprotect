@@ -44,8 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd97a0665edae1f468cc7472d264d7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
   respawnTimer: 0
-  spawnTime: 0
-  spawnLimit: 0
-  prefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
+  spawnTime: 200
+  spawnLimit: 10
+  nbEnemies: 0
+  enemyPrefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
+  hpPrefab: {fileID: 3308703690192288278, guid: 2bf48cbd96a6da74c9696048aaaa54ee, type: 3}
+  range: 30
+  score: 0
+  hpStart: 10

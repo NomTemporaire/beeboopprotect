@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
         }
         if(collision.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("We are under attack !");
             GameObject.Find("Controller").GetComponent<Controller>().deleteEnemy(gameObject, true);
             Destroy(gameObject);
         }
