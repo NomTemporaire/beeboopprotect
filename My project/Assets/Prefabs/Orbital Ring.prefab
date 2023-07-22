@@ -103,7 +103,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bd8fbd954caf042b8e99bb6bda60e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: 0
+  vitesse: 3
 --- !u!1001 &7584174985826725734
 PrefabInstance:
   m_ObjectHideFlags: 0

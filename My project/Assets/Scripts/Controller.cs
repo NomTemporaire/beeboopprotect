@@ -19,7 +19,7 @@ public class Controller : MonoBehaviour
         spawnTime = 200;
         spawnLimit = 10;
         nbEnemies = 0;
-        range = 10;
+        range = 23;
     }
 
     // Update is called once per frame
@@ -35,7 +35,15 @@ public class Controller : MonoBehaviour
             {
                 respawnTimer = 0;
                 spawnTime--;
-                float angle = Random.Range(0, Mathf.PI * 2);
+                float angle1 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                float angle2 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                float angle3 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                float angle = (angle1 + angle2 + angle3) / 3;
+                float minus = Random.Range(-1, 1);
+                if(minus<0)
+                {
+                    angle += Mathf.PI;
+                }
                 GameObject obj = Instantiate(prefab, new Vector3(range*Mathf.Cos(angle),range*Mathf.Sin(angle),0), new Quaternion(0, 0, 0, 0)) as GameObject;
                 obj.transform.Rotate(0, 0, (angle*180)/Mathf.PI);
                 nbEnemies++;
@@ -43,7 +51,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public void deleteEnemy(GameObject enemy)
+    public void deleteEnemy(GameObject enemy, bool attaque)
     {
         nbEnemies--;
     }

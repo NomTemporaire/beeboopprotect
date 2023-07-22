@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int vie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.position += -transform.position.normalized / 100;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,9 +25,15 @@ public class Enemy : MonoBehaviour
             vie--;
             if (vie <= 0)
             {
-                GameObject.Find("Controller").GetComponent<Controller>().deleteEnemy(gameObject);
+                GameObject.Find("Controller").GetComponent<Controller>().deleteEnemy(gameObject, false);
                 Destroy(gameObject);
             }
+        }
+        if(collision.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log("We are under attack !");
+            GameObject.Find("Controller").GetComponent<Controller>().deleteEnemy(gameObject, true);
+            Destroy(gameObject);
         }
     }
 }

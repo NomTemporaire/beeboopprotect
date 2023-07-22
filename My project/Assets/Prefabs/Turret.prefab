@@ -120,9 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cb550bdf4a34f429966be3088f4bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 200
+  rate: 100
   nb: 1
-  range: 7
+  range: 15
   etape: 0
-  enemyPrefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
   prefab: {fileID: 5449534232926743785, guid: 915475a045ae900458143fca28ca4895, type: 3}

@@ -9,7 +9,7 @@ public class Ring : MonoBehaviour
 
     void Start()
     {
-        vitesse = 1;
+
     }
 
     // Update is called once per frame
