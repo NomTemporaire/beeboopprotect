@@ -28,7 +28,7 @@ public class Turret : MonoBehaviour
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 Vector3 dist = obj.transform.position - transform.position;
-                if(dist.magnitude<=range && dist.magnitude<minDist)
+                if (dist.magnitude <= range && dist.magnitude < minDist && (obj.transform.position.magnitude > 6 && dist.magnitude>0.5))
                 {
                     target = obj;
                     minDist = dist.magnitude;

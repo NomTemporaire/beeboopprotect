@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7667074939027241179
 MonoBehaviour:
@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTimer: 0
-  spawnTime: 200
-  spawnLimit: 10
+  spawnTime: 30
+  spawnLimit: 15
   nbEnemies: 0
-  enemyPrefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
+  normalPrefab: {fileID: 2358289358125596170, guid: 023534dd07f051c4d9920175b616bfd3, type: 3}
+  rapidePrefab: {fileID: 5236891531594848990, guid: 80b59bde49f05e44a8892d80cfebc042, type: 3}
+  tankPrefab: {fileID: 1449561525371465448, guid: 3b68c6604ee1d0d41b87d8dfffdce3f7, type: 3}
   hpPrefab: {fileID: 3308703690192288278, guid: 2bf48cbd96a6da74c9696048aaaa54ee, type: 3}
   range: 30
   score: 0

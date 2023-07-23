@@ -118,5 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d65d4c638f6e64e9b0571d10d2afb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vie: 0
-  prefab: {fileID: 2358289358125596170}
+  vie: 3
+  vitesse: 2
+  reward: 1
