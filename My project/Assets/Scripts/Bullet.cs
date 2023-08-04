@@ -7,35 +7,42 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject target;
+    public int vitesse { get; set; }
+    public int degat { get; set; }
+
+    private Controller control;
 
     void Start()
     {
-        
+        control = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if(!control.pause)
         {
-            Vector3 vectorDist = target.transform.position - transform.position;
-            transform.position += vectorDist / (vectorDist.magnitude * 10);
-        }
-        else
-        {
-            float minDist = float.MaxValue;
-            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+            if (target != null)
             {
-                Vector3 dist = obj.transform.position - transform.position;
-                if (dist.magnitude <= 4 && dist.magnitude < minDist)
-                {
-                    target = obj;
-                    minDist = dist.magnitude;
-                }
+                Vector3 vectorDist = target.transform.position - transform.position;
+                transform.position += (vectorDist / (vectorDist.magnitude * 10)) * vitesse;
             }
-            if(target==null)
+            else
             {
-                Destroy(gameObject);
+                float minDist = float.MaxValue;
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    Vector3 dist = obj.transform.position - transform.position;
+                    if (dist.magnitude <= 4 && dist.magnitude < minDist)
+                    {
+                        target = obj;
+                        minDist = dist.magnitude;
+                    }
+                }
+                if (target == null)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

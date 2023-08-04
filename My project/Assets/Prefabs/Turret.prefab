@@ -123,5 +123,6 @@ MonoBehaviour:
   rate: 50
   nb: 1
   range: 15
-  etape: 0
+  vitesseBullet: 1
+  degatBullet: 1
   prefab: {fileID: 5449534232926743785, guid: 915475a045ae900458143fca28ca4895, type: 3}

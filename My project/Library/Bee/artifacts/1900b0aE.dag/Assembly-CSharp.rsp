@@ -355,6 +355,8 @@
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/Controller.cs"
 "Assets/Scripts/Enemy.cs"
+"Assets/Scripts/Menu.cs"
+"Assets/Scripts/PauseButton.cs"
 "Assets/Scripts/Planet.cs"
 "Assets/Scripts/Ring.cs"
 "Assets/Scripts/Sun.cs"

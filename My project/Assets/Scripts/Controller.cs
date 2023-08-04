@@ -17,19 +17,21 @@ public class Controller : MonoBehaviour
     private List<GameObject> hp;
     public int range;
     public int score;
+    private int truescore;
     public int hpStart;
     private int nbSummon;
+    public bool pause;
+    private GameObject hpList;
 
     void Start()
     {
+        pause = false;
         nbSummon = 0;
-        GameObject hplist = GameObject.Find("HPList");
+        hpList = GameObject.Find("HPList");
         hp = new List<GameObject>();
         for(int i = 0; i<hpStart; i++)
         {
-            GameObject obj = Instantiate(hpPrefab, new Vector3(-38+1.1f*i,18, 10f), new Quaternion(0, 0, 0, 0)) as GameObject;
-            obj.transform.parent = hplist.transform;
-            hp.Add(obj);
+            AddHP();
         }
 
     }
@@ -37,57 +39,55 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(respawnTimer < spawnTime)
+        if (!pause)
         {
-            respawnTimer++;
-        }
-        else
-        {
-            if(nbEnemies < spawnLimit)
+            if (respawnTimer < spawnTime)
             {
-                respawnTimer = 0;
-                spawnTime--;
-                if(spawnTime==0)
+                respawnTimer++;
+            }
+            else
+            {
+                if (nbEnemies < spawnLimit)
                 {
-                    spawnTime = 30;
-                    spawnLimit++;
-                }
-                float angle1 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
-                float angle2 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
-                float angle3 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
-                float angle = (angle1 + angle2 + angle3) / 3;
-                float minus = Random.Range(-1, 1);
-                if (minus < 0)
-                {
-                    angle += Mathf.PI;
-                }
-                if (nbSummon % 6 == 0)
-                {
-                    GameObject obj = Instantiate(rapidePrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
-                    obj.transform.Rotate(0, 0, (angle * 180) / Mathf.PI);
-                }
-                else
-                {
-                    if (nbSummon % 15 == 0)
+                    respawnTimer = 0;
+                    spawnTime--;
+                    if (spawnTime == 0)
                     {
-                        GameObject obj = Instantiate(tankPrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                        spawnTime = 30;
+                        spawnLimit++;
+                    }
+                    float angle1 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                    float angle2 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                    float angle3 = Random.Range(-Mathf.PI / 2, Mathf.PI / 2);
+                    float angle = (angle1 + angle2 + angle3) / 3;
+                    float minus = Random.Range(-1, 1);
+                    if (minus < 0)
+                    {
+                        angle += Mathf.PI;
+                    }
+                    if (nbSummon % 6 == 0)
+                    {
+                        GameObject obj = Instantiate(rapidePrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
                         obj.transform.Rotate(0, 0, (angle * 180) / Mathf.PI);
                     }
                     else
                     {
-                        GameObject obj = Instantiate(normalPrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
-                        obj.transform.Rotate(0, 0, (angle * 180) / Mathf.PI);
+                        if (nbSummon % 15 == 0)
+                        {
+                            GameObject obj = Instantiate(tankPrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                            obj.transform.Rotate(0, 0, (angle * 180) / Mathf.PI);
+                        }
+                        else
+                        {
+                            GameObject obj = Instantiate(normalPrefab, new Vector3(range * Mathf.Cos(angle), range * Mathf.Sin(angle), 0), new Quaternion(0, 0, 0, 0)) as GameObject;
+                            obj.transform.Rotate(0, 0, (angle * 180) / Mathf.PI);
+                        }
                     }
+                    nbEnemies++;
+                    nbSummon++;
                 }
-                nbEnemies++;
-                nbSummon++;
             }
         }
-    }
-
-    public void spawnEnemy()
-    {
-        
     }
 
     public void deleteEnemy(GameObject enemy, bool attaque, int reward)
@@ -105,12 +105,25 @@ public class Controller : MonoBehaviour
                     Destroy(play);
                 }
                 Debug.Log("Perdu !");
-                Debug.Log("Vous avez vaincu " + score + " ennemis.");
+                Debug.Log("Vous avez vaincu " + truescore + " ennemis.");
             }
         }
         else
         {
             score += reward;
+            truescore++;
         }
+    }
+
+    public void PauseGame()
+    {
+        pause = !pause;
+    }
+
+    public void AddHP()
+    {
+        GameObject obj = Instantiate(hpPrefab, new Vector3(-38 + 1.1f * hp.Count, 18, 10f), new Quaternion(0, 0, 0, 0)) as GameObject;
+        obj.transform.parent = hpList.transform;
+        hp.Add(obj);
     }
 }
