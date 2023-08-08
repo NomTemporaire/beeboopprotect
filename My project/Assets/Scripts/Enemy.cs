@@ -26,7 +26,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
-            vie -= collision.gameObject.GetComponent<Bullet>().degat;
+            if (collision.gameObject.name.Contains("ShotGun"))
+            {
+                vie -= collision.gameObject.GetComponent<BulletSG>().degat;
+            }
+            else
+            {
+                vie -= collision.gameObject.GetComponent<Bullet>().degat;
+            }
             if (vie <= 0)
             {
                 GameObject.Find("Controller").GetComponent<Controller>().deleteEnemy(gameObject, false, reward);

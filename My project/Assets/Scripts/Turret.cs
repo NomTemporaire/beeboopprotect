@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
     private int etape;
     public int vitesseBullet;
     public int degatBullet;
+    public float vitesse;
 
     private Controller control;
 
@@ -18,7 +19,8 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        etape = 0;
+        etape = 0;      
+        vitesse = 3;
         control = GameObject.Find("Controller").GetComponent<Controller>();
     }
 
@@ -27,6 +29,14 @@ public class Turret : MonoBehaviour
     {
         if (!control.pause)
         {
+            if (Input.GetKey("left"))
+            {
+                transform.RotateAround(Vector3.zero, Vector3.forward, 0.2f * vitesse);
+            }
+            if (Input.GetKey("right"))
+            {
+                transform.RotateAround(Vector3.zero, Vector3.forward, -0.2f * vitesse);
+            }
             etape++;
             if (etape >= rate)
             {
