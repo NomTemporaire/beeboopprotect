@@ -121,3 +121,5 @@ MonoBehaviour:
   vie: 3
   vitesse: 2
   reward: 1
+  electric: 0
+  prefab: {fileID: 5449534232926743785, guid: de219ea16a90ee34181db1fb6354e88b, type: 3}

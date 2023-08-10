@@ -12,6 +12,11 @@ public class Menu : MonoBehaviour
     private GameObject TurretSG1;
     private GameObject TurretSG2;
     public GameObject turretSGPrefab;
+    public GameObject turretElecPrefab;
+    private GameObject TurretElec1;
+    private GameObject TurretElec2;
+    private GameObject TurretElec3;
+    private GameObject TurretElec4;
     public TextMeshProUGUI scoreTxt;
     public Button btnTurretRate;
     private int coutTurretRate;
@@ -31,6 +36,17 @@ public class Menu : MonoBehaviour
     public Button btnSGAngle;
     private int coutSGAngle;
     private int niveauAngle;
+    public Button btnAddTurretElec;
+    private bool BoolAddTurretElec;
+    private int coutAddTurretElec;
+    public Button btnElecRange;
+    private int coutElecRange;
+    public Button btnElecRate;
+    private int coutElecRate;
+    public Button btnElecBounce;
+    private int coutElecBounce;
+    public Button btnElecFork;
+    private int coutElecFork;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +62,12 @@ public class Menu : MonoBehaviour
         coutSGRate = 1;
         coutSGRange = 1;
         coutSGAngle = 3;
+        BoolAddTurretElec = false;
+        coutAddTurretElec = 120;
+        coutElecRange = 1;
+        coutElecRate = 1;
+        coutElecBounce = 10;
+        coutElecFork = 30;
         btnTurretRate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer la tourelle :\r\nCadence de tir\r\nCout : " + coutTurretRate;
         btnTurrentRotate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer la tourelle :\r\nVitesse de rotation\r\nCout : " + coutTurretRotate;
         btnHPIncrease.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Gagner un point de vie\r\nCout : " + coutHPIncrease;
@@ -54,6 +76,11 @@ public class Menu : MonoBehaviour
         btnSGRate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les fusils à pompe :\r\nCadence de tir\r\nCout : " + coutSGRate;
         btnSGRange.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les fusils à pompe :\r\nPortée\r\nCout : " + coutSGRange;
         btnSGAngle.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les fusils à pompe :\r\nAngle et/ou nombre de projectiles\r\nCout : " + coutSGAngle;
+        btnAddTurretElec.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Ajouter quatre tourelles :\r\nArc électrique\r\nCout : " + coutAddTurretElec;
+        btnElecRange.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nPortée et Portée des rebonds\r\nCout : " + coutElecRange;
+        btnElecRate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nCadence de tir\r\nCout : " + coutElecRate;
+        btnElecBounce.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nNombre de rebonds\r\nCout : " + coutElecBounce;
+        btnElecFork.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nNombre de séparations\r\nCout : " + coutElecFork;
         niveauAngle = 1;
     }
 
@@ -80,7 +107,7 @@ public class Menu : MonoBehaviour
         else
             btnHPIncrease.interactable = true;
 
-        if (control.score < 30 || BoolAddTurretSG)
+        if (control.score < coutAddTurretSG || BoolAddTurretSG)
             btnAddTurretSG.interactable = false;
         else
             btnAddTurretSG.interactable = true;
@@ -104,6 +131,31 @@ public class Menu : MonoBehaviour
             btnSGAngle.interactable = false;
         else
             btnSGAngle.interactable = true;
+
+        if (control.score < coutAddTurretElec || BoolAddTurretElec)
+            btnAddTurretElec.interactable = false;
+        else
+            btnAddTurretElec.interactable = true;
+
+        if (control.score < coutElecRate || !BoolAddTurretElec)
+            btnElecRate.interactable = false;
+        else
+            btnElecRate.interactable = true;
+
+        if (control.score < coutElecRange || !BoolAddTurretElec)
+            btnElecRange.interactable = false;
+        else
+            btnElecRange.interactable = true;
+
+        if (control.score < coutElecBounce || !BoolAddTurretElec)
+            btnElecBounce.interactable = false;
+        else
+            btnElecBounce.interactable = true;
+
+        if (control.score < coutElecFork || !BoolAddTurretElec)
+            btnElecFork.interactable = false;
+        else
+            btnElecFork.interactable = true;
     }
 
     public void UPGRateMainTurret()
@@ -135,7 +187,7 @@ public class Menu : MonoBehaviour
 
     public void UPGNewSGTurret()
     {
-        control.score -= 30;
+        control.score -= coutAddTurretSG;
         BoolAddTurretSG = true;
         TurretSG1 = Instantiate(turretSGPrefab, Vector3.up * 6f, new Quaternion(0, 0, 0, 0)) as GameObject;
         TurretSG1.transform.RotateAround(Vector3.zero, Vector3.forward, 90);
@@ -152,6 +204,7 @@ public class Menu : MonoBehaviour
         btnTurretRange.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer la tourelle :\r\nPortée\r\nCout : " + coutTurretRange;
         UpdateInfo();
     }
+
     public void UPGRangeSG()
     {
         control.score -= coutSGRange;
@@ -161,6 +214,7 @@ public class Menu : MonoBehaviour
         btnSGRange.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer la tourelle :\r\nPortée\r\nCout : " + coutSGRange;
         UpdateInfo();
     }
+
     public void UPGRateSG()
     {
         control.score -= coutSGRate;
@@ -170,6 +224,7 @@ public class Menu : MonoBehaviour
         btnSGRate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les fusils à pompe :\r\nCadence de tir\r\nCout : " + coutSGRate;
         UpdateInfo();
     }
+
     public void UPGAngleSG()
     {
         control.score -= coutSGAngle;
@@ -192,6 +247,69 @@ public class Menu : MonoBehaviour
         }
         niveauAngle++;
         btnSGAngle.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les fusils à pompe :\r\nAngle et/ou nombre de projectiles\r\nCout : " + coutSGAngle;
+        UpdateInfo();
+    }
+
+    public void UPGNewElecTurret()
+    {
+        control.score -= coutAddTurretElec;
+        BoolAddTurretElec = true;
+        TurretElec1 = Instantiate(turretElecPrefab, Vector3.up * 6f, new Quaternion(0, 0, 0, 0)) as GameObject;
+        TurretElec1.transform.RotateAround(Vector3.zero, Vector3.forward, 45);
+        TurretElec2 = Instantiate(turretElecPrefab, Vector3.up * 6f, new Quaternion(0, 0, 0, 0)) as GameObject;
+        TurretElec2.transform.RotateAround(Vector3.zero, Vector3.forward, 315);
+        TurretElec3 = Instantiate(turretElecPrefab, Vector3.up * 6f, new Quaternion(0, 0, 0, 0)) as GameObject;
+        TurretElec3.transform.RotateAround(Vector3.zero, Vector3.forward, 135);
+        TurretElec4 = Instantiate(turretElecPrefab, Vector3.up * 6f, new Quaternion(0, 0, 0, 0)) as GameObject;
+        TurretElec4.transform.RotateAround(Vector3.zero, Vector3.forward, 225);
+        UpdateInfo();
+    }
+
+    public void UPGRangeElec()
+    {
+        control.score -= coutElecRange;
+        coutElecRange += 1;
+        TurretElec1.GetComponent<TurretElectric>().range++;
+        TurretElec2.GetComponent<TurretElectric>().range++;
+        TurretElec3.GetComponent<TurretElectric>().range++;
+        TurretElec4.GetComponent<TurretElectric>().range++;
+        btnElecRange.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nPortée et Portée des rebonds\r\nCout : " + coutElecRange;
+        UpdateInfo();
+    }
+
+    public void UPGRateElec()
+    {
+        control.score -= coutElecRate;
+        coutElecRate += 1;
+        TurretElec1.GetComponent<TurretElectric>().rate--;
+        TurretElec2.GetComponent<TurretElectric>().rate--;
+        TurretElec3.GetComponent<TurretElectric>().rate--;
+        TurretElec4.GetComponent<TurretElectric>().rate--;
+        btnElecRate.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nCadence de tir\r\nCout : " + coutElecRate;
+        UpdateInfo();
+    }
+
+    public void UPGBounceElec()
+    {
+        control.score -= coutElecBounce;
+        coutElecBounce += 10;
+        TurretElec1.GetComponent<TurretElectric>().nbBounce++;
+        TurretElec2.GetComponent<TurretElectric>().nbBounce++;
+        TurretElec3.GetComponent<TurretElectric>().nbBounce++;
+        TurretElec4.GetComponent<TurretElectric>().nbBounce++;
+        btnElecBounce.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nNombre de rebonds\r\nCout : " + coutElecBounce;
+        UpdateInfo();
+    }
+
+    public void UPGForkElec()
+    {
+        control.score -= coutElecFork;
+        coutElecFork += 10;
+        TurretElec1.GetComponent<TurretElectric>().nbFork++;
+        TurretElec2.GetComponent<TurretElectric>().nbFork++;
+        TurretElec3.GetComponent<TurretElectric>().nbFork++;
+        TurretElec4.GetComponent<TurretElectric>().nbFork++;
+        btnElecFork.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Améliorer les arcs électriques :\r\nNombre de séparations\r\nCout : " + coutElecFork;
         UpdateInfo();
     }
 }
