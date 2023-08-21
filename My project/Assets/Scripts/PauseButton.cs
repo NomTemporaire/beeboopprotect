@@ -10,10 +10,12 @@ public class PauseButton : MonoBehaviour
     private Controller control;
     public TextMeshProUGUI text;
     public GameObject panel;
+    public GameObject menu2;
     void Start()
     {
         control = GameObject.Find("Controller").GetComponent<Controller>();
         panel.transform.localPosition = new Vector3(500, 0, -450);
+        menu2.transform.localPosition = new Vector3(500, 0, -450);
     }
 
     public void Pressed()
@@ -29,6 +31,7 @@ public class PauseButton : MonoBehaviour
         {
             text.GetComponent<TextMeshProUGUI>().text = "Pause";
             panel.transform.localPosition = new Vector3(500, 0, -450);
+            menu2.transform.localPosition = new Vector3(500, 0, -450);
         }
     }
 }

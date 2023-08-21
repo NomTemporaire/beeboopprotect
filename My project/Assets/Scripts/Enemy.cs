@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
                 {
                     target = obj;
                     float angleTarget = (Mathf.Atan2(dist.y, dist.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
-                    Debug.Log("1: " + angleTarget);
                     Vector3 pos = (target.transform.position + transform.position) / 2;
                     GameObject obj2 = Instantiate(prefab, pos + Vector3.forward * 0.3f, new Quaternion(0, 0, 0, 0)) as GameObject;
                     obj2.transform.localScale = new Vector3(0.2f, dist.magnitude, 0.05f);

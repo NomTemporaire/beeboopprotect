@@ -358,6 +358,7 @@
 "Assets/Scripts/ElectricBullet.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/NewTurretMenu.cs"
 "Assets/Scripts/PauseButton.cs"
 "Assets/Scripts/Planet.cs"
 "Assets/Scripts/Sun.cs"
